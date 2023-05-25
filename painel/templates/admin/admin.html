@@ -8,13 +8,21 @@
 </head>
 <body>
     <h1>Teste de edição</h1>
+    <h2>Editar cadastro sexo</h2>
     <ul>
         {% for cad_sexo in cad_sexo %}
         <li>
-            {{cad_sexo.description}} - {{cad_sexo.id}} <a href="{% url 'admin' %}">Editar</a>
+            {{cad_sexo.description}} - {{cad_sexo.id}} <a href="{% url 'dellsex' cad_sexo.id %}">Deletar</a>
         </li>
         {% endfor %}
     </ul>       
-    <p><a href="{% url 'admin' %}">Alterar Tabela cad_sexo</a></p>
+    <h2>Editar cadastro cliente</h2>
+    <ul>
+        {% for cliente in cliente %}
+        <li>
+            {{cliente.firstname}} - {{cliente.id}} <a href="{% url 'dellcliente' cliente.id %}">Deletar</a>
+        </li>
+        {% endfor %}
+    </ul>       
 </body>
 </html>
