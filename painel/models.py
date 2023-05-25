@@ -1,23 +1,23 @@
 from django.db import models
 
 class sexo(models.Model):
-    description = models.TextField()
+    description = models.CharField(max_length=50)
         
     def __str__(self):
         return self.description
-
-class cliente(models.Model):
-    first_name = models.CharField(max_length=50),
-    email = models.CharField(max_length=50),
-    password = models.CharField(max_length=255),
-    sexo = models.ForeignKey(sexo, on_delete=models.CASCADE)
+        
+class clientes(models.Model):
+    firstname = models.TextField(max_length=50, null=False, blank=False, default='')
+    email = models.TextField(max_length=255, null=False, blank=False, default='')
+    password = models.TextField(max_length=255, null=False, blank=False, default='')
+    sexo = models.TextField(max_length=50)
     
     def __str__(self):
-        return self.first_name
+        return self.firstname
 
 
 class user(models.Model):
-    id_cliente = models.ForeignKey(cliente, null=False, blank=False, on_delete=models.CASCADE),
+    id_cliente = models.ForeignKey(clientes, null=False, blank=False, on_delete=models.CASCADE),
     user = models.CharField(max_length=50)
     
     def __str__(self):

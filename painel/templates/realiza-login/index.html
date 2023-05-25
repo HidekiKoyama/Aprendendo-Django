@@ -25,14 +25,14 @@
                     <input type="text" name="nome" id="nome"><br>
 
                     <label for="senha"> Senha</label>
-                    <input type="password" name="senha" id="senha"><br>
+                    <input type="password" name="password" id="senha"><br>
                     
                     <button type="submit">Entrar</button>
                 </form>
-                <a href="#">Ainda não tem conta?</a>
+                <a href="{% url 'rcreateuser' %}">Ainda não tem conta?</a>
                 <a href="{% url 'admin' %}">admin</a> 
             </div>
         </div>
-    </div>            
+    </div>              
 </body>
 </html>

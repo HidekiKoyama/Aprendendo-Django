@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de controle geral</title>
+    <title>Altera cadastro cad_sexo </title>
 </head>
 <body>
-    <h1>Teste de edição</h1>
+    <h1>Editar cad_sexo</h1>
     <ul>
         {% for cad_sexo in cad_sexo %}
         <li>
-            {{cad_sexo.description}} - {{cad_sexo.id}} <a href="{% url 'admin' %}">Editar</a>
+            {{cad_sexo.description}} - {{cad_sexo.id}} <a href="{% url 'admin' cad_sexo.id %}">Editar</a>
         </li>
         {% endfor %}
     </ul>       
-    <p><a href="{% url 'admin' %}">Alterar Tabela cad_sexo</a></p>
 </body>
 </html>

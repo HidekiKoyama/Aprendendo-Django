@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Login</title>
+    <title>Cadastro</title>
 </head>
 <header>
     <span>
@@ -17,23 +17,37 @@
     <div class="main">
         <div class="formulario">
             <div class="pg">
-                <form class="form">
-                    <!--Nome do cliente-->
+                <form action="{% url 'createuser' %}" method='POST'>
+                    {% csrf_token %}
+                    
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome"><br>
-                    <!--Nome do usuario-->
+
                     <label for="user">Nome do seu usuário</label>
                     <input type="text" name="user" id="user"><br>
-                    <!--Nome do usuario-->
+                    
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="user"><br>
-                    <!--Nome do email do cliente-->
+                    <input type="password" name="password" id="password"><br>
+                    
                     <label for="email"> E-mail</label>
-                    <input type="email" name="" id="email"><br>
+                    <input type="text" name="email" id="email"><br>
+                    
+                    <label for="sexo"> Sexo</label>
+                    <select name="sexo">
+                        {% for cad_sexo in cad_sexo %}
+                        <option value="{{cad_sexo.description}}">{{cad_sexo.description}}</option>
+                        {% endfor %}
+                    </select>
                     <button type="submit">Cadastrar</button>
-                    <a href="/painel/templates/index/index.html">Já tem uma conta?</a>
                 </form>
             </div>
+            <ul>
+                {% for clientess in clientess %}
+                <li>
+                    {{clientess.firstname}} - {{clientess.id}}
+                </li>
+                {% endfor %}
+            </ul>     
         </div>
     </div>            
 </body>
