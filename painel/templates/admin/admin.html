@@ -7,22 +7,48 @@
     <title>Tela de controle geral</title>
 </head>
 <body>
-    <h1>Teste de edição</h1>
+    <h1>Tela de edição</h1>
+    <p><a href="/">back to menu</a></p>
+    <p>Cadastro de sexo</p>
+    <form action="{% url 'cadastrosex' %}" method="POST">
+        {% csrf_token %}        
+        <label for="nome">Usuário</label>
+        <input type="text" name="nome"><br>
+        <button type="submit">Entrar</button>
+    <hr>
     <h2>Editar cadastro sexo</h2>
-    <ul>
+
+        {% include 'modelo-css/modelo.html' %}
+    
+        <table border="solid">
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Delete</th>
         {% for cad_sexo in cad_sexo %}
-        <li>
-            {{cad_sexo.description}} - {{cad_sexo.id}} <a href="{% url 'dellsex' cad_sexo.id %}">Deletar</a>
-        </li>
+        <tr>
+        <td>{{ cad_sexo.id }}</td>
+        <td>{{ cad_sexo.descricao }}</td>
+        <td><a href="{% url 'dellsex' cad_sexo.id %}">Deletar</a></td>
+        </tr>
         {% endfor %}
-    </ul>       
+    </table>      
+    <hr>
     <h2>Editar cadastro cliente</h2>
-    <ul>
+    <table border="solid">
+        <th>id</th>
+        <th>nome</th>
+        <th>email</th>
+        <th>Delete</th>
         {% for cliente in cliente %}
-        <li>
-            {{cliente.firstname}} - {{cliente.id}} <a href="{% url 'dellcliente' cliente.id %}">Deletar</a>
-        </li>
+        <th>
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.email}}</td>
+                <td><a href="{% url 'dellcliente' cliente.id %}">Delete</a></td>
+            </tr>
+        </th>
         {% endfor %}
-    </ul>       
+    </table>     
 </body>
 </html>

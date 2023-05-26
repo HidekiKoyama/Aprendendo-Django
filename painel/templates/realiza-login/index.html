@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
 <header>
     <span>
         <p>METATIVA</p>
-        <img src="img/Imagem1.svg" alt="">
+        <div class="img_principal">
+            {% include 'realiza-login/img/imagem1.svg' %}
+        </div>
+        
     </span>
-</header>    
+</header>   
+{% include 'realiza-login/style.html' %} 
+
 <body>
     <div class="main">
         <div class="formulario">
             <div class="pg">
-                <form action="{% url 'cadastrosex' %}" method="POST">
+                <form action="{% url 'tela_de_login' %}" method="POST">
                     {% csrf_token %}
                     <img src="img/Imagem2.svg" alt="">
                     
                     <label for="nome">Usuário</label>
-                    <input type="text" name="nome" id="nome"><br>
+                    <input type="text" name="usuario" id="nome"><br>
 
                     <label for="senha"> Senha</label>
-                    <input type="password" name="password" id="senha"><br>
+                    <input type="password" name="senha" id="senha"><br>
                     
                     <button type="submit">Entrar</button>
                 </form>

@@ -1,24 +1,18 @@
 from django.db import models
 
 class sexo(models.Model):
-    description = models.CharField(max_length=50)
-        
+    descricao = models.CharField(max_length=50, null=False, blank=False)
     def __str__(self):
-        return self.description
+        return self.descricao        
         
 class clientes(models.Model):
-    firstname = models.TextField(max_length=50, null=False, blank=False, default='')
+    nome = models.TextField(max_length=50, null=False, blank=False)
     email = models.TextField(max_length=255, null=False, blank=False, default='')
-    password = models.TextField(max_length=255, null=False, blank=False, default='')
-    sexo = models.TextField(max_length=50)
+    sexo = models.ForeignKey(sexo, null=False, blank=False, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.firstname
-
+        return self.nome, self.email, self.senha, self.sexo
 
 class user(models.Model):
-    id_cliente = models.ForeignKey(clientes, null=False, blank=False, on_delete=models.CASCADE),
+    id_cliente = models.ForeignKey(clientes, null=False, blank=False, on_delete=models.CASCADE)
     user = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.user

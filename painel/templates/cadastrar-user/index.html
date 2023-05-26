@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
 </head>
 <header>
     <span>
         <p>METATIVA</p>
-        <img src="/painel/templates/index/img/Imagem1.svg" alt="">
+        {% include 'realiza-login/img/imagem1.svg' %}
     </span>
 </header>    
+{% include  'realiza-login/style.html' %}
+{% include 'modelo-css/modelo.html' %}
+<style>
+    html, h1, hr, td, table, body , *{
+        color: white;
+        background-color: #4d0096;
+
+    }
+    span{
+
+    }
+</style>
 <body>
     <div class="main">
         <div class="formulario">
@@ -21,33 +32,45 @@
                     {% csrf_token %}
                     
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome"><br>
+                    <input type="text" name="nome_cad" id="nome"><br>
 
                     <label for="user">Nome do seu usuário</label>
-                    <input type="text" name="user" id="user"><br>
+                    <input type="text" name="user_cad" id="user"><br>
                     
                     <label for="senha">Senha</label>
-                    <input type="password" name="password" id="password"><br>
+                    <input type="password" name="password_cad" id="password"><br>
                     
                     <label for="email"> E-mail</label>
-                    <input type="text" name="email" id="email"><br>
+                    <input type="text" name="email_cad" id="email"><br>
                     
                     <label for="sexo"> Sexo</label>
-                    <select name="sexo">
-                        {% for cad_sexo in cad_sexo %}
-                        <option value="{{cad_sexo.description}}">{{cad_sexo.description}}</option>
+
+                    <select name="sexo_cad">
+                        {% for list_sex in list_sex %}
+                        <option value="{{ list_sex.descricao }}">{{ list_sex.descricao }}</option>
                         {% endfor %}
                     </select>
+                    <hr>
                     <button type="submit">Cadastrar</button>
                 </form>
-            </div>
-            <ul>
-                {% for clientess in clientess %}
-                <li>
-                    {{clientess.firstname}} - {{clientess.id}}
-                </li>
-                {% endfor %}
-            </ul>     
+                <h1>Testando ambiente</h1>
+                <table border="solid">
+                    <th>id</th>
+                    <th>nome</th>
+                    <th>email</th>
+                    <th>Delete</th>
+                    {% for cliente in cliente %}
+                    <th>
+                        <tr>
+                            <td>{{ cliente.id }}</td>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.email}}</td>
+                            <td><a href="{% url 'dellcliente' cliente.id %}">Delete</a></td>
+                        </tr>
+                    </th>
+                    {% endfor %}
+                </table>     
+            </div>  
         </div>
     </div>            
 </body>
