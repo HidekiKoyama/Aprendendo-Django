@@ -8,5 +8,7 @@ urlpatterns = [
     path('new-user/', createuser, name='createuser'),
     path('dellsex/<int:id>/', dellsex, name='dellsex'),
     path('dellcliente/<int:id>/', dellcliente, name='dellcliente'),
-    path('geral/', tela_de_login, name='tela_de_login')
+    path('geral/', tela_de_login, name='tela_de_login'),
+    path('dellusers/<int:id>/', dellusers, name='dellusers'),
+    path('newuser/', redireciona_cad_user, name='redireciona_cad_user'),
 ]

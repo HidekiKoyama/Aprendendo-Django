@@ -39,16 +39,36 @@
         <th>nome</th>
         <th>email</th>
         <th>Delete</th>
-        {% for cliente in cliente %}
+        {% for cad_cliente in cad_cliente %}
         <th>
             <tr>
-                <td>{{ cliente.id }}</td>
-                <td>{{ cliente.nome }}</td>
-                <td>{{ cliente.email}}</td>
-                <td><a href="{% url 'dellcliente' cliente.id %}">Delete</a></td>
+                <td>{{ cad_cliente.id }}</td>
+                <td>{{ cad_cliente.nome }}</td>
+                <td>{{ cad_cliente.email}}</td>
+                <td><a href="{% url 'dellcliente' cad_cliente.id %}">Delete</a></td>
             </tr>
         </th>
         {% endfor %}
     </table>     
+    <hr>
+    <h2>
+        Editar Usuarios
+    </h2>
+    <table border="solid">
+        <th>id</th>
+        <th>user</th>
+        <th>id_cliente</th>
+        <th>Delete</th>
+        {% for cad_users in cad_users %}
+        <th>
+            <tr>
+                <td>{{ cad_users.id }}</td>
+                <td>{{ cad_users.user }}</td>
+                <td>{{ cad_users.id_cliente}}</td>
+                <td><a href="{% url 'dellusers' cad_users.id %}">Delete</a></td>
+            </tr>
+        </th>
+        {% endfor %}
+    </table>
 </body>
 </html>

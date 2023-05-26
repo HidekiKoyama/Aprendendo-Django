@@ -50,26 +50,9 @@
                         <option value="{{ list_sex.descricao }}">{{ list_sex.descricao }}</option>
                         {% endfor %}
                     </select>
-                    <hr>
                     <button type="submit">Cadastrar</button>
+                    {{  tipoerro }}
                 </form>
-                <h1>Testando ambiente</h1>
-                <table border="solid">
-                    <th>id</th>
-                    <th>nome</th>
-                    <th>email</th>
-                    <th>Delete</th>
-                    {% for cliente in cliente %}
-                    <th>
-                        <tr>
-                            <td>{{ cliente.id }}</td>
-                            <td>{{ cliente.nome }}</td>
-                            <td>{{ cliente.email}}</td>
-                            <td><a href="{% url 'dellcliente' cliente.id %}">Delete</a></td>
-                        </tr>
-                    </th>
-                    {% endfor %}
-                </table>     
             </div>  
         </div>
     </div>            
