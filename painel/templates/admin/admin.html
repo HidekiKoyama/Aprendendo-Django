@@ -6,19 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de controle geral</title>
 </head>
+{% include 'modelo-css/modelo.html' %}
+<style>
+    html, body{
+        background-color: black;
+        color: white;
+    }
+    a{
+        text-decoration: none;
+        color:red;
+    }
+</style>
 <body>
     <h1>Tela de edição</h1>
     <p><a href="/">back to menu</a></p>
     <p>Cadastro de sexo</p>
     <form action="{% url 'cadastrosex' %}" method="POST">
         {% csrf_token %}        
-        <label for="nome">Usuário</label>
-        <input type="text" name="nome"><br>
-        <button type="submit">Entrar</button>
+        <label for="nome">Descrição</label>
+        <input type="text" name="nome">
+        <button type="submit">Salvar</button>
     <hr>
     <h2>Editar cadastro sexo</h2>
-
-        {% include 'modelo-css/modelo.html' %}
     
         <table border="solid">
         <th>ID</th>

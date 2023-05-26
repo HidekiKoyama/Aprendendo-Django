@@ -7,13 +7,30 @@ def home(request):
     return render(request, 'realiza-login/index.html')
 
 def admin(request): 
+    solicita_login = request.POST.get('usuario')
+    solicita_senha = request.POST.get('senha')
+
     try:
-        cad_sexo = sexo.objects.all()
-        cad_cliente = clientes.objects.all()
-        cad_users = user.objects.all()
-        return render(request, 'admin/admin.html' , {'cad_sexo': cad_sexo, 'cad_cliente': cad_cliente, 'cad_users': cad_users})
+        conexao = sql.connect('db.sqlite3')
+        df = pandas.read_sql_query("SELECT pn_cliente.senha, pn_user.user "+
+            "FROM painel_clientes pn_cliente " +
+            f"JOIN(SELECT user, id_cliente FROM painel_user WHERE user = '{solicita_login}') pn_user "+
+            F"ON pn_cliente.id = pn_user.id_cliente WHERE pn_cliente.senha = '{solicita_senha}'", conexao)
+
+        aval = df.iloc[0:1].values
+        print(aval)
+        if (solicita_login in aval and solicita_senha in aval):
+            if(solicita_login == 'admin'):
+                cad_sexo = sexo.objects.all()
+                cad_cliente = clientes.objects.all()
+                cad_users = user.objects.all()
+                return render(request, 'admin/admin.html' , {'cad_sexo': cad_sexo, 'cad_cliente': cad_cliente, 'cad_users': cad_users})
+            else:
+                return render(request, 'sistema/tela_de_inicio.html', {'pessoa': solicita_login})
+        else:
+            return render(request, 'realiza-login/index.html')    
     except:
-        return render(request, 'admin/admin.html')
+        return render(request, 'realiza-login/index.html')
 
 def cadastrosex(request):
     cadastrar_sex = sexo()
