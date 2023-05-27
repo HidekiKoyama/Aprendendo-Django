@@ -63,7 +63,7 @@ def createuser(request):
         df = pandas.read_sql_query(f"SELECT id FROM painel_sexo WHERE descricao = '{filtro}'", conexao)
         val = int(df.iloc[0:1].values)
         print(val)
-        insert_into_cad_cliente.sexo = val *1
+        insert_into_cad_cliente.sexo = val
 
         insert_into_cad_cliente.save_base()
 
