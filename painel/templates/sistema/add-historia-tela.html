@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tela-add-historia.css' %}">
+    <title>Adicionar</title>
+</head>
+<body>
+    <h1>Vamos criar uma historia {{ pessoa }}? 🤔</h1>
+    <div class="main">
+        <div class="caixa">
+            <div class="seleciona-categoria">
+                <select name="escolha-de-categoria" id="">
+                    <option value="Teste">Drama</option>
+                    <option value="Teste">Terror</option>
+                </select>
+            </div>
+            <form action="{% url 'adicionar_historia' %}" method="POST">
+                {% csrf_token %}
+                <div class="titulo">
+                    <label for="input-titulo-historia">Título</label>
+                    <br>
+                    <input type="text" name="input-titulo-historia" id="input-titulo-historia" value="O Pequeno príncipe">
+                </div>
+                <div class="input-conteudo-historia">
+                    <label for="input-conteudo-historia">História</label>
+                    <br>
+                    <textarea name="input-conteudo-historia" id="input-conteudo-historia-text" cols="30" rows="10">era uma vez...</textarea>
+                </div>
+                <button type="submit" id="button-publicar-postagem">Publicar</button>
+            </form>
+            <div class="botoes">
+                <button type="submit" id="button-rascunho-postagem">Enviar para rascunho</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

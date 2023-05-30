@@ -3,20 +3,23 @@ from painel.models import sexo, clientes, user
 import sqlite3 as sql
 import pandas
 
+# solicita_login_global = request.POST.get('usuario')
+# solicita_senha_global = request.POST.get('senha')
+
 def home(request):
     return render(request, 'realiza-login/index.html')
+def login(request):
+    pass
 
 def admin(request): 
     solicita_login = request.POST.get('usuario')
     solicita_senha = request.POST.get('senha')
-
     try:
         conexao = sql.connect('db.sqlite3')
         df = pandas.read_sql_query("SELECT pn_cliente.senha, pn_user.user "+
             "FROM painel_clientes pn_cliente " +
             f"JOIN(SELECT user, id_cliente FROM painel_user WHERE user = '{solicita_login}') pn_user "+
             F"ON pn_cliente.id = pn_user.id_cliente WHERE pn_cliente.senha = '{solicita_senha}'", conexao)
-
         aval = df.iloc[0:1].values
         print(aval)
         if (solicita_login in aval and solicita_senha in aval):
@@ -31,12 +34,11 @@ def admin(request):
             return render(request, 'realiza-login/index.html')    
     except:
         return render(request, 'realiza-login/index.html')
-
+    
 def cadastrosex(request):
     cadastrar_sex = sexo()
     cadastrar_sex.descricao = request.POST.get('nome')
     cadastrar_sex.save_base()
-
     cad_sexo = sexo.objects.all()
     cad_cliente = clientes.objects.all()
     cad_users = user.objects.all()
@@ -47,6 +49,7 @@ def cadastrosex(request):
 def redireciona_cad_user(request):
         list_sex = sexo.objects.all()
         return render(request, 'cadastrar-user/index.html' , {'list_sex': list_sex})
+
 def createuser(request):
     try:
         insert_into_cad_cliente = clientes()
@@ -86,7 +89,7 @@ def createuser(request):
         list_sex = sexo.objects.all()
         return render(request, 'cadastrar-user/index.html' , {'list_sex': list_sex, 'tipoerro': 'Usuário ou email já registrado'})
 
-    # Deleta dados
+# Deleta dados
 
 def dellsex(request, id):
     try:
@@ -133,7 +136,7 @@ def tela_de_login(request):
 
     try:
         conexao = sql.connect('db.sqlite3')
-        df = pandas.read_sql_query("SELECT pn_cliente.senha, pn_user.user "+
+        df = pandas.read_sql_query("SELECT pn_cliente.senha, pn_user.user7"+
             "FROM painel_clientes pn_cliente " +
             f"JOIN(SELECT user, id_cliente FROM painel_user WHERE user = '{solicita_login}') pn_user "+
             F"ON pn_cliente.id = pn_user.id_cliente WHERE pn_cliente.senha = '{solicita_senha}'", conexao)
@@ -153,7 +156,9 @@ def tela_de_login(request):
     except:
         return render(request, 'realiza-login/index.html')
 
-
+# TELA DE
+def add_historia_tela(request):
+    return render (request, 'sistema/add-historia-tela.html')
 
 """"
 def deleta(request):
@@ -161,4 +166,4 @@ def deleta(request):
     SD1010.objects.delete(id=id_do_fera)
     nome = SD1010.objects.all()
     return render(request, "index.html", {"cliente": nome})
-"""""
+"""

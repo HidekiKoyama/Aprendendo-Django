@@ -1,41 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tela_de_login' %}">
     <title>Login</title>
 </head>
-<header>
-    <span>
-        <p>METATIVA</p>
-        <div class="img_principal">
-            {% include 'realiza-login/img/imagem1.svg' %}
-        </div>
-        
-    </span>
-</header>   
-{% include 'realiza-login/style.html' %} 
-
 <body>
-    <div class="main">
-        <div class="formulario">
-            <div class="pg">
-                <form action="{% url 'tela_de_login' %}" method="POST">
-                    {% csrf_token %}
-                    <img src="img/Imagem2.svg" alt="">
-                    
-                    <label for="nome">Usuário</label>
-                    <input type="text" name="usuario" id="nome"><br>
-
-                    <label for="senha"> Senha</label>
-                    <input type="password" name="senha" id="senha"><br>
-                    
-                    <button type="submit">Entrar</button>
-                </form>
-                <a href="{% url 'redireciona_cad_user' %}">Ainda não tem conta?</a>
-            </div>
-        </div>
-    </div>              
+    <div class="pg">
+        <form action="{% url 'admin' %}" method="POST">
+            {% csrf_token %}
+            <label for="nome">Usuário</label>
+            <input type="text" name="usuario" id="nome"><br>
+            <label for="senha"> Senha</label>
+            <input type="password" name="senha" id="senha"><br>
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="{% url 'redireciona_cad_user' %}">Ainda não tem conta?</a>
+    </div>
 </body>
 </html>

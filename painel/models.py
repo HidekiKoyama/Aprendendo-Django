@@ -17,3 +17,13 @@ class clientes(models.Model):
 class user(models.Model):
     id_cliente = models.IntegerField()
     user = models.CharField(max_length=50, unique=True)
+
+class categoria_historia(models.Model):
+    descricao_categoria = models.CharField(max_length=50)
+
+class historias(models.Model):
+    id_cliente = models.IntegerField(null=False)          #vai ser fk
+    categoria = models.IntegerField(null=False)           #vai ser fk 
+    titulo = models.CharField(max_length=50)
+    texto_completo = models.TextField()
+

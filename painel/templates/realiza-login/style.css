@@ -1,0 +1,23 @@
+
+.imagem-black {
+    position: fixed;
+    z-index: -1;
+    padding-left: 650px;
+
+    height: 100vh;
+}
+.imagem-marrom{
+    position: fixed;
+    z-index: -2;
+    padding-left: 0;
+    width: 250vh;
+}
+.imagem-black > svg{
+    position: fixed;
+    z-index: -1;
+    padding-top: 0;
+    margin-top: 0;
+    top: 0;
+    height: 1500px;
+    width: 1000px;
+}

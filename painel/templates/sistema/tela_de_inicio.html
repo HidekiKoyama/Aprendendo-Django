@@ -1,19 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seja bem-vindo(a)</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Seja bem-vindo</title>
 </head>
-<style>
-    html, body {
-        background-color: #02032e;
-        color:white;
-    } 
-</style>
+<style>{% include 'sistema/style.css' %}</style>
+<aside class="sidebar">
+    <header class="sidebar-header">
+        <span class="usuarioName" id="nomeusuariologado"></span>
+    </header>
+    <nav>
+        <button class="abrir-lista-menu" onclick="botao_open_menu()">
+            <span id="button-defull-menu" class="button-defull-right">{% include 'sistema/img-sistem/keyboard_arrow_right_black_24dp.svg' %}</span>
+            <p>Menu</p>
+        </button>
+        <ul id="ul-menu" class="ul-show-off">
+            <li>Minhas Histórias</li>
+            <li><a href="{% url 'add_historia_tela' %} " method="POST" name="opala">Adicionar Histórias - {{ pessoa }}</a></li>
+            <li>Feedback</li>
+            <li>Explorar</li>
+        </ul>
+        <button class="abrir-lista-menu" onclick="botao_open_dash()">
+            <span id="button-defull-dashboard" class="button-defull-right">{% include 'sistema/img-sistem/keyboard_arrow_right_black_24dp.svg' %}</span>
+            <p>Dashboard</p>
+        </button>
+        <ul id="ul-dashboard" class="ul-show-off">
+            <li>Painel</li>
+            <li>Personalizar</li>
+            <li>Ideias de Dash</li>
+        </ul>
+        <button class="abrir-lista-menu" onclick="botao_open_configuracao()">
+            <span id="button-defull-configuracao" class="button-defull-right">{% include 'sistema/img-sistem/keyboard_arrow_right_black_24dp.svg' %}</span>
+            <p>Configuração</p>
+        </button>
+        <ul id="ul-configuracao" class="ul-show-off">
+            <li>Meus dados</li>
+            <li>Perfil</li>
+            <li><a href="/">Logout</a><li>
+        </ul>
+    </nav>
+</aside>
 <body>
-    <h1>Bem vindo, {{ pessoa }}</h1>
-    <p></p>
+    <div class="main">
+        <h1>Bem vindo,  {{ pessoa }}</h1>
+        <p></p>
+    </div>
+    {% block extrahead %}
+    <script src="{% static 'js/script-menu.js' %}"></script>
+    {% endblock %}
 </body>
 </html>

@@ -1,22 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/tela-admin.css' %}">
+    {% endblock %}
     <title>Tela de controle geral</title>
 </head>
-{% include 'modelo-css/modelo.html' %}
-<style>
-    html, body{
-        background-color: black;
-        color: white;
-    }
-    a{
-        text-decoration: none;
-        color:red;
-    }
-</style>
 <body>
     <h1>Tela de edição</h1>
     <p><a href="/">back to menu</a></p>
@@ -39,7 +32,7 @@
         <td><a href="{% url 'dellsex' cad_sexo.id %}">Deletar</a></td>
         </tr>
         {% endfor %}
-    </table>      
+    </table>
     <hr>
     <h2>Editar cadastro cliente</h2>
     <table border="solid">
